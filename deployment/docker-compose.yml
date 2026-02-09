@@ -1,0 +1,26 @@
+# version: "3.9"
+
+services:
+  monitoring-app:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    container_name: monitoring-system
+    environment:
+      STORAGE_BACKEND: file
+      METRIC_THRESHOLD: 80
+
+    volumes:
+      - ../data:/app/data
+    depends_on:
+      - mock-db
+    restart: unless-stopped
+  mock-db:
+    image: postgres:15
+    container_name: mock-db
+    environment:
+      POSTGRES_USER: monitor
+      POSTGRES_PASSWORD: monitor
+      POSTGRES_DB: metrics
+    ports:
+      - "5432:5432"

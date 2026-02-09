@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: monitoring-config
+data:
+  METRIC_THRESHOLD: "80"
+  STORAGE_BACKEND: "file"

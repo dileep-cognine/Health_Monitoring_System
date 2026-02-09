@@ -1,0 +1,7 @@
+aiohttp
+anyio
+numpy
+pandas
+cryptography
+pytest
+pytest-asyncio
