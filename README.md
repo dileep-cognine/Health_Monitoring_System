@@ -1,32 +1,113 @@
 # System Health Monitoring & Analytics Platform
-This project implements a secure, real-time system monitoring and analytics platform using advanced Python concepts.
-It monitors system metrics asynchronously, processes and analyzes data efficiently, triggers alerts based on thresholds, and supports secure, containerized, and Kubernetes-based deployment.
-## Architecture Overview
-- Singleton for configuration
-- Factory for processor creation
-- Observer for alerting
-- Strategy for storage
-- Async metrics collection
-- Secure data handling
+
+
+A secure, scalable, and real-time system monitoring platform built using advanced Python concepts, asynchronous programming, and cloud-native deployment practices.
+
+---
+
+## Overview
+
+This project monitors system metrics asynchronously, processes and analyzes data efficiently, triggers alerts based on configurable thresholds, and supports secure containerized and Kubernetes-based deployment.
+
+---
+
+## Architecture & Design Patterns
+
+| Pattern      | Purpose |
+|--------------|----------|
+| **Singleton** | Configuration management |
+| **Factory** | Processor creation |
+| **Observer** | Alert notifications |
+| **Strategy** | Flexible storage handling |
+| **Async I/O** | Real-time metric collection |
+
+---
 
 ## Performance Optimizations
-- Generator-based file processing (O(1) memory)
-- Async I/O using asyncio & aiohttp
-- WeakRef cache to avoid memory leaks
 
-## Security Measures
+- Generator-based file processing (O(1) memory usage)
+- Asynchronous I/O using `asyncio` and `aiohttp`
+- WeakRef caching to prevent memory leaks
+
+---
+
+## 🔐 Security Features
+
 - Salted SHA-256 password hashing
 - Fernet encryption for sensitive data
-- Path traversal protection in file I/O
+- Path traversal protection
+- Secure configuration handling
+
+---
 
 ## Testing
-- Pytest for unit & async testing
-- Full coverage of src/ logic
 
-## Deployment
-- Dockerized for reproducibility
+- Unit and async testing using `pytest`
+- Full coverage of `src/` logic
 
-# Project structure
+Run tests:
+
+```bash
+pytest -v
+```
+
+---
+
+# ▶️ Running the Application
+
+## 🔹 Run Locally (Without Docker)
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+
+python -m src.app
+```
+
+---
+
+## Run with Docker (Single Container)
+
+```bash
+docker build -t monitoring-system -f deployment/Dockerfile .
+docker run -d --name monitoring-app monitoring-system
+```
+
+Check logs:
+
+```bash
+docker logs -f monitoring-app
+```
+
+---
+
+## Run with Docker Compose
+
+```bash
+docker compose -f deployment/docker-compose.yml up --build
+docker compose -f deployment/docker-compose.yml down
+```
+
+---
+
+## Kubernetes Deployment
+
+Enable Kubernetes in Docker Desktop, then run:
+
+```bash
+kubectl get nodes
+kubectl apply -f deployment/k8s/
+kubectl get pods
+kubectl logs deployment/monitoring-system
+kubectl delete -f deployment/k8s/
+```
+
+---
+
+# 📁 Project Structure
+
+```
 monitoring-system/
 ├── src/
 │   ├── app.py
@@ -52,33 +133,31 @@ monitoring-system/
 ├── pytest.ini
 ├── DEPLOYMENT.md
 └── README.md
+```
 
-# Run Commands
-# Run Locally (Without Docker)
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
+---
 
-python -m src.app.py
+## Key Highlights
 
-# Run Tests
-pytest -v
+- Real-time async monitoring
+- Secure architecture
+- Docker & Kubernetes ready
+- Modular and scalable design
+- Production-ready structure
 
-# Run with Docker (Single Container)
-docker build -t monitoring-system -f deployment/Dockerfile .
+---
 
-# Check logs:
-docker logs -f monitoring-app
+## Future Enhancements
 
-# Run with Docker Compose
-docker compose -f deployment/docker-compose.yml up --build
-docker compose -f deployment/docker-compose.yml down
+- Prometheus integration
+- Grafana dashboard
+- OpenTelemetry tracing
+- CI/CD pipeline setup
+- Cloud deployment (AWS/GCP/Azure)
 
-# Kubernetes Deployment
-# Enable Kubernetes in Docker Desktop, then:
+---
 
-kubectl get nodes
-kubectl apply -f deployment/k8s/
-kubectl get pods
-kubectl logs deployment/monitoring-system
-kubectl delete -f deployment/k8s/
+## Author
+
+**Dileep Samaji**  
+Software Engineer | AI & ML Enthusiast | Cloud & DevOps Learner
